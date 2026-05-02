@@ -5,7 +5,6 @@ autoinstall:
   interactive-sections:
     - identity
     - storage
-    - network
 
   source:
     id: ubuntu-desktop-minimal
