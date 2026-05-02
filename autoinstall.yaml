@@ -26,8 +26,6 @@ autoinstall:
 
   updates: all
 
-  shutdown: poweroff
-
   packages:
     - ansible
     - git
@@ -49,6 +47,8 @@ autoinstall:
     - htop
     - whois
     - sqlite3
+    - gnome-calendar
+    - gnome-weather
 
   late-commands:
     - |
