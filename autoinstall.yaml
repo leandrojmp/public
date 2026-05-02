@@ -1,0 +1,60 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  interactive-sections:
+    - identity
+    - storage
+    - network
+
+  source:
+    id: ubuntu-desktop-minimal
+
+  locale: en_US.UTF-8
+
+  timezone: "America/Sao_Paulo"
+
+  keyboard:
+    layout: us,br
+    variant: "intl,"
+
+  ssh:
+    install-server: false
+    allow-pw: true
+
+  drivers:
+    install: true
+
+  updates: all
+
+  shutdown: poweroff
+
+  packages:
+    - ansible
+    - git
+    - python3-pip
+    - python3-venv
+    - build-essential
+    - showtime
+    - vlc
+    - transmission
+    - usb-creator-gtk
+    - file-roller
+    - gst-video-thumbnailer
+    - gst-audio-thumbnailer
+    - ffmpeg
+    - gnupg
+    - curl
+    - vim
+    - tmux
+    - htop
+    - whois
+    - sqlite3
+
+  late-commands:
+    - |
+      USER=$(awk -F: '$3==1000 {print $1}' /target/etc/passwd)
+      cat > /target/etc/sudoers.d/90-primary-user << EOF
+      Defaults:$USER timestamp_timeout=60
+      EOF
+      chmod 0440 /target/etc/sudoers.d/90-primary-user
